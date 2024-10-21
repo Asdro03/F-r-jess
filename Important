@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Einladung zum Date</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .response {
+            margin-top: 20px;
+            display: none;
+        }
+        .response label {
+            font-size: 1.1em;
+            margin-right: 10px;
+        }
+        .response button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+        }
+        .response button:hover {
+            background-color: #007BB5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Einladung zum Date</h1>
+        <p>Guten Tag Jessie,</p>
+        <p>Ihr Freund lädt Sie herzlich zu einem Date am kommenden Wochenende ein.</p>
+        <p>Haben Sie Zeit und Interesse, gemeinsam den Tag zu verbringen?</p>
+        <button class="btn" onclick="showResponse()">Ja, ich möchte antworten!</button>
+        
+        <div class="response" id="responseForm">
+            <p>Bitte wählen Sie Ihre Antwort:</p>
+            <form id="dateResponse">
+                <label>
+                    <input type="radio" name="response" value="Ja, ich freue mich darauf!"> Ja, ich freue mich darauf!
+                </label>
+                <br><br>
+                <label>
+                    <input type="radio" name="response" value="Leider kann ich nicht."> Leider kann ich nicht.
+                </label>
+                <br><br>
+                <button type="button" onclick="submitResponse()">Antwort senden</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showResponse() {
+            document.getElementById('responseForm').style.display = 'block';
+        }
+
+        function submitResponse() {
+            const form = document.getElementById('dateResponse');
+            const formData = new FormData(form);
+            const userResponse = formData.get('response');
+            
+            if (userResponse) {
+                alert('Danke für Ihre Antwort: ' + userResponse);
+                // Hier könnte man den Wert an einen Server senden oder eine E-Mail triggern
+                // Zum Beispiel mit fetch API:
+                // fetch('/submit-response', { method: 'POST', body: JSON.stringify({response: userResponse}) });
+            } else {
+                alert('Bitte wählen Sie eine Antwort aus.');
+            }
+        }
+    </script>
+</body>
+</html>
